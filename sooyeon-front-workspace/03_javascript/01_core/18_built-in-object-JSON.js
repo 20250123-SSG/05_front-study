@@ -81,3 +81,6 @@ console.log(JSON.stringify(product)); //{"name":"마우스","brand":"로지텍",
 const jsonStr = '{"name":"마우스","brand":"로지텍","price":50000}';
 const obj = JSON.parse(jsonStr);
 console.log(obj.name);
+
+
+

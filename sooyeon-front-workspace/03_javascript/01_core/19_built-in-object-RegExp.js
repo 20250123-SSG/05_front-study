@@ -166,9 +166,6 @@ if(verifyName('김수연')){
 }
 
 
-
-
-
 /*
   ## 이스케이프 문자 ## 
   1. \d : 숫자를 의미 (즉, [0-9] 와 동일)
@@ -179,7 +176,9 @@ if(verifyName('김수연')){
   6. \S : 단일 공백 문자가 아님을 의미
 */
 
-
+//연습. 첫글자는 반드시숫자 + 그 이루 숫자/영문자/밑줄
+regExp = /^\d\w+$/;
+console.log(regExp.test("1ewf_w"));
 
 
 
@@ -190,7 +189,38 @@ if(verifyName('김수연')){
   3. m : 여러줄 탐색            (multiple-line)
 */
 
+//특정 문자열에 첫글다가 대소문자를 가리지 않고 j로 시작하는지 비교
+regExp = /^j/i;
+console.log(regExp.test('jewfjj'));
+console.log(regExp.test('Jewfjj'));
+
+//j로 시작하는 부분을 찾아서 **로 치환
+console.log('javascript'.replace(regExp,'(***)'));
+console.log('javascript\nJava'.replace(regExp,'(***)'));
+
+regExp = /^j/igm;
+console.log('javascript\nJava'.replace(regExp,'(***)'));
 
 
+const verityMobile = (userPhone) => {
+       // const regExp = /^010-\d{4}-\d{4}$/;
+       const regExp = /^010(-\d{4}){2}$/;
+       if(regExp.test(userPhone)) {
+              console.log("맞음");
+       }else {
+              console.log("안맞음");
+       }
+};
 
+verityMobile('011-3423-3423');
 
+const verityId = (userId) => {
+       const regExp = /^[a-z] [a-z\d-_]{4,19}$/;
+       if(regExp.test(userId)) {
+              console.log("맞음");
+       }else {
+              console.log("안맞음");
+       }
+}
+
+verityId('wfeef1_');
