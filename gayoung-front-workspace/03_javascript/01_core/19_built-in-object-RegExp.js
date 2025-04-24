@@ -150,7 +150,7 @@ console.log(regExp.test('라쟈해키ㅣㅣㅈㄴㄴㅋㅋ'));
 
 
 const verifyName = (name) => {
-       regExp = /^[가-힣]{2,6}$/;
+       let regExp = /^[가-힣]{2,5}$/;
        if (regExp.test(name)){
               console.log("이름형식이 맞습니다.");
        } else {
@@ -162,6 +162,8 @@ verifyName("이가영");
 verifyName("가영여섯글자");
 verifyName("이가영여섯글자넘었다");
 
+const nameArr = ['이가영', '가영여섯글자', '이가영여섯글자넘었다' ];
+nameArr.forEach( name => verifyName(name));
 
 
 
@@ -180,7 +182,7 @@ verifyName("이가영여섯글자넘었다");
 */
 
 const verifyZipcode = (postNumber) => {
-       regExp = /^[0-9]{5}$/;
+       let regExp = /^[0-9]{5}$/;
        if (regExp.test(postNumber)){
               console.log("우편번호 형식이 맞습니다.");
        } else {
@@ -203,6 +205,12 @@ verifyZipcode("123456789");
   6. \S : 단일 공백 문자가 아님을 의미
 */
 
+// 연습7. 첫글자는 반드시 숫자이고 그 이후에는 숫자/영문자/밑줄로 이루어져있는지 비교
+regExp = /^\d\w+$/;
+console.log(regExp.test('1as23_ASD'));
+console.log(regExp.test('QWER01'));
+console.log(regExp.test('29_ASDF'));
+
 
 
 //✅ 메타문자 (Metacharacters)
@@ -214,12 +222,64 @@ verifyZipcode("123456789");
 /*
   ## 플래그 문자 ##
   //정규식 뒤에 붙는 옵션 같은 것.
-  1. g : 전역 탐색              (global)
-  2. i : 대소문자 구분없이 탐색 (ignore)
-  3. m : 여러줄 탐색            (multiple-line)
+  1. g : 전역 탐색                (global)
+  2. i : 대소문자 구분없이 탐색   (ignore)
+  3. m : 여러줄 탐색              (multiple-line)
 */
 
+// 연습8. 첫글자가 대소문자를 가리지 않고 J로 시작하는지 비교  
+regExp = /^j/i;
+console.log(regExp.test('javascript'));
+console.log(regExp.test('JavaScript'));
+
+// 연습9. j로 시작하는 부분을 찾아서 (***)으로 치환
+console.log('javascript'.replace(regExp, '(***)'));
+console.log('javascript\nJavaScript'.replace(regExp, '(***)'));
+
+regExp = /^j/igm;
 
 
+/*
+  실습. verityMobile() 함수 구현하기
+  
+  1. 기능 
+     전달된 인자값이 휴대전화번호 형식이 맞는지를 검사하여
+     맞을 경우 '전화번호 형식이 맞습니다.' 그게 아닐 경우 '전화번호 형식에 맞지 않습니다' 출력
+     * 전화번호 형식 : 010-숫자4자리-숫자4자리
+  2. 인자
+     검사할 전화번호 문자열
+  3. 반환
+     없음
+*/
+const verityMobile = (mobile) => {
+       let regExp = /^010-\d{4}-\d{4}$/; // /^010-(\d{4}){2}$/
+       console.log(regExp.test(mobile) ? '전화번호 형식에 맞습니다.' : '전화번호 형식에 맞지 않습니다.');
+};
+
+mobileArr = ['010-6700-3580', '010-67000000-55555555', '000000000000'];
+mobileArr.forEach(num => verityMobile(num));
 
 
+/*
+  실습. verifyId() 함수 구현하기
+
+  1. 기능 
+     전달된 인자값이 아이디 형식이 맞는지를 검사하여
+     맞을 경우 '아이디 형식이 맞습니다.' 그게 아닐 경우 '아이디 형식에 맞지 않습니다' 출력
+     * 아이디 형식 : 소문자|숫자|특수문자(-_)로만 구성, 첫글자는 소문자, 총 5~20자
+  2. 인자
+     검사할 아이디 문자열
+  3. 반환
+     없음
+*/
+const verifyId = (identify) => {
+       let regExp = /^[a-z]\w{4,19}$/; // [a-z0-9-_]
+       if (regExp.test(identify)){
+              console.log('아이디 형식에 맞습니다.')
+       } else {
+              console.log('아이디 형식에 맞지 않습니다.')
+       }
+}
+
+idArr = ['rkdud_1717', 'a12_34', '123rkdud'];
+idArr.forEach(id => verifyId(id));
