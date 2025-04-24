@@ -177,7 +177,7 @@
 
   <!--
       ## CSS 조작 ## 
-      1. 요소의 style 속성 활용용
+      1. 요소의 style 속성 활용
       2. inline 방식으로 CSS 가 처리됨 (style 속성을 주면 기존 CSS는 덮어쓰기됨)
       3. CSS 속성 적용 방식
         1) 마침표 : CSS 속성 이름을 Dash Case 에서 Camel Case 로 바꿔서 사용
@@ -365,7 +365,7 @@
   <!-- 
     ## data 속성 ##
     1. 이미 정의되어있는 속성이 아닌 사용자 정의 속성을 지정할 때 사용
-    2. 주로 자바스크립트 간의 데이터 교환을 위해 특정 데이터를 저장하기 위해 사용용
+    2. 주로 자바스크립트 간의 데이터 교환을 위해 특정 데이터를 저장하기 위해 사용
     3. data- 접두사 다음에 임의의 이름을 붙여 사용함 (data-*)
     
       HTML Attribute       DOM Property
@@ -380,7 +380,16 @@
   <div id="person2">JESSICA</div>
 
   <script>
+    const person1 = document.getElementById('person1');
+    console.log(person1.dataset.name);
+    console.log(person1.dataset.age);
+    console.log(person1.dataset.homeAddress);
 
+    const person2 = document.getElementById('person2');
+    person2.dataset.mobile="010-1234-1234";
+    console.log(person2.dataset.mobile);
+    person2.dataset.birthday="1990-10-22";
+    console.log(person2.dataset.birthday);
 
   </script>
 
