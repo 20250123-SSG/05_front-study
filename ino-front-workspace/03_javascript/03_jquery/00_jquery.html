@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 
@@ -29,12 +30,16 @@
   <div id="jQuery-test">jQuery방식으로 선택</div>
 
   <script>
-
+    // vanilla JS
+    const jsEL = document.getElementById('javascript-test');
+    // control DOM - property 접근 -> 대입
+    jsEL.textContent = 'helloworld';
     
+    // jQuery library 방식
+    const jqEL = $('#jQuery-test');
+    jqEL.text('jQuery hello world');
+    jqEL.css('backgroundColor', 'green');
   </script>
-
   
-
-
 </body>
 </html>
