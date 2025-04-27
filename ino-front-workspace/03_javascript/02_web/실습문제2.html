@@ -273,7 +273,11 @@
     // 각 카테고리 선택시 호출되는 함수 (radio 매개변수 : 현재 선택된 radio 요소가 전달됨)
     function displaySearchBox(radio) {
       // 현재 선택된 카테고리의 검색 박스만 보여지게 처리하시오.
-
+      switch (radio.textContent) {
+        case '제목': break;
+        case '날짜': break;
+        case '가격': break;
+      }
 
     }
   </script>
