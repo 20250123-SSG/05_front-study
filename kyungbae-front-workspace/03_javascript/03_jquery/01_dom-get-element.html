@@ -14,6 +14,10 @@
 
   <script>
 
+    console.log($('div'));
+    console.log($('#box'));
+    console.log($('.wrap'));
+    console.log('===================================');
   </script>
 
   <hr>
@@ -33,7 +37,22 @@
   </select>
 
   <script>
+    // type선택자 사용
+    console.log($(':text'));
+    console.log($(':password'));
+    console.log($(':radio'));
+    console.log($(':checkbox'));
+    console.log($(':submit'));
+    console.log('----------------------');
 
+    // 상태선택자 사용
+    console.log($(':radio:checked'));
+    console.log($(':checkbox:checked'));
+    console.log($(':submit:enabled'));
+
+    // is메소드 사용
+    console.log($(':text').is(':focus'));
+    console.log($('#radio1').is(':checked'));
   </script>
 
   <hr>
@@ -49,7 +68,32 @@
 
   <script>
       
+    // 자손 및 후손 : Descendants Traversing
+    // 자손
+    console.log($('.ott>li'));
+    console.log($('.ott').children());
+    console.log($('.ott').children().children());
+    console.log($('.ott').children().children('a'));
 
+    // 후손
+    console.log($('.ott a'));
+    console.log($('.ott').find('a'));
+
+    // 동위 관계 : Sideways Traversing
+    // 일반형제 (~)
+    console.log($('#tving').nextAll());
+    console.log($('#tving').prevAll());
+    console.log($('#tving').siblings());
+    console.log($('#tving').siblings('li'));
+
+    // 인접형제 (+)
+    console.log($('#tving').next());
+    console.log($('#tving').prev());
+
+    // 부모 및 조상 : Ancestors Traversing
+    console.log($('#tving-link').parent());
+    console.log($('#tving-link').parents());
+    console.log($('#tving-link').closest('ul'));
     
   </script>
 
@@ -85,7 +129,13 @@
   </table>
 
   <script>
-
+    console.log($('#user-info tr').first());
+    console.log($('#user-info tr').last());
+    console.log($('#user-info tr').even());
+    console.log($('#user-info tr').odd());
+    console.log($('#user-info tr').eq(3)); // 원하는 수 선택
+    console.log($('#user-info tr').filter('.main')); // 해당 조건에 만족하는
+    console.log($('#user-info tr').not('.main'));  // 해당 조건에 만족하지 않는
   </script>
   
 </body>
