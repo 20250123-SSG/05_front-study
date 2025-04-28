@@ -43,7 +43,7 @@
   <button id="prompt">prompt창출력</button>
 
   <script>
-    document.getElementById('alert').addventListener('click', function(evt) {
+    document.getElementById('alert').addEventListener('click', function(evt){
       /*window.*/alert('alert 창입니다!');
     });
 
@@ -58,14 +58,13 @@
     });
 
   </script>
-  
 
   <hr>
 
   <h2>open</h2>
 
   <!-- 
-    ## window.open(url[, target[, features]]) ##
+    ## [window.]open(url[, target[, features]]) ##
     1. 새로운 창을 띄울 수 있는 메소드
     2. 새로 띄워진 창을 제어할 수 있도록 해당 창의 window 객체를 반환 
     3. 새로 띄워진 창을 자식창, 해당 창을 열게 해준 창을 부모창 이라 함 
@@ -90,7 +89,7 @@
   <button id="my_popup">내가 만든 창</button> <br>
 
   <input type="text" id="parent_msg">
-  <button id="parent_btn">부모창에서 자식창으로 메세지 전달</button> <br>
+  <button id="parent_btn">팝업창(자식창)에게 전송</button>
 
   <div id="child_msg_result"></div>
 
@@ -100,18 +99,14 @@
     });
 
     let popupWindow;
-    document.getElementById('naver_popup').addEventListener('click', (evt) => {
-      open('./popup.html', 'mypopup', 'width=360, height=520');
-    });
-
     document.getElementById('my_popup').addEventListener('click', (evt) => {
-      open('./popup.html', 'mypopup', 'width=360, height=520');
+      popupWindow = open('./popup.html', 'mypopup', 'width=360, height=520');
     });
 
     document.getElementById('parent_btn').addEventListener('click', (evt) => {
       if(popupWindow) { // 팝업창(자식창)이 열려있을 경우
-        popupWindow.document.getElementById('parent_msg_result').textContent
-        = document.getElementById('parent_msg').value;
+        popupWindow.document.getElementById('parent_msg_result').textContent 
+          = document.getElementById('parent_msg').value;
       }else{ // 열려있지 않을 경우
         alert('팝업창이 열려있지 않습니다.');
       }
@@ -140,8 +135,8 @@
     });
 
     document.getElementById('timeout2').addEventListener('click', (evt) => {
-      const popupWindow = open('./popup.html', 'mypopup', 'width=360, height=520');
-      popupWindow.alert('알람창이 꺼지고 3초 후에 해당 팝업은 자동으로 닫힙니다.');
+      const popupWindow = open('./popup.html', 'mypopup', 'width=500, height=500');
+      popupWindow.alert('알람창이 꺼지고 3초 후에 해당 팝업창은 자동으로 닫힙니다.');
       setTimeout(() => popupWindow.close(), 3000);
     });
 
@@ -156,10 +151,10 @@
   <button id="start_time">시계 시작</button>
 
   <script>
-    function changeTime() {
+    function changeTime(){
       const now = new Date();
-      let hour = now.getHours(); // 24시간 형식
-      let minute = now.getMinutes();
+      let hour = now.getHours(); // 24시간형식
+      let minute = now.getMinutes(); 
       let second = now.getSeconds();
 
       // 12시간형식으로, 시/분/초가 한자리 수일 경우 앞에 0 덧붙이기
@@ -173,12 +168,8 @@
 
     document.getElementById('start_time').addEventListener('click', (evt) => {
       changeTime();
+      setInterval(changeTime, 1000);
     });
-  </script>
-
-  <script>
-    
-
     
   </script>
 

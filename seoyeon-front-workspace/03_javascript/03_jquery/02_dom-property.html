@@ -31,6 +31,23 @@
   <script>
     function contentProp() {
 
+      // * innerHTML 값 가져오기
+      // 1) JavaScript 방식
+      console.log( document.getElementById('content').innerHTML );
+      // 2) jQuery 방식
+      console.log( $('#content').html() );
+
+      // * innerHTML 값 변경
+      // 1) JavaScript 방식
+      const divList = document.getElementsByClassName('content'); // HTMLCollection [div, div, div]
+      for(let divEl of divList){
+        divEl.innerHTML = '<b>javascript 방식으로 변경</b>';
+      }
+
+      // 2) jQuery 방식
+      $('.content').html('<b>jQuery 방식으로 변경</b>');
+      // html 메소드 내에서 선택된 요소에 알아서 순차적으로 접근해서 변경함
+
     }
   </script>
 
@@ -58,7 +75,7 @@
 
   <script>
     function styleProp(){
-      // * css 값 가져오기
+      // * css 값 가져오기 
       // 1) JavaScript 방식
       console.log(document.querySelector('.ott').style.backgroundColor);
       // 2) jQuery 방식
@@ -68,20 +85,20 @@
       // 1) JavaScript 방식
       const aList = document.querySelectorAll('.ott a'); // NodeList [a, a, a, a]
       aList.forEach(aEl => {
-        aEl.style.textDecoration = 'none'; // a태그의 밑줄 제거
+        aEl.style.textDecoration = 'none';
       });
 
       // 2) jQuery 방식
-      $('.ott a').css('textDecoration', 'none'); // a태그의 밑줄 제거
-      $('.ott a').css('font-size', '32px' );
+      $('.ott a').css('textDecoration', 'none');
+      $('.ott a').css('font-size', '32px'); // fontSize (o), font-size (o)
 
-      $('.ott a').css('fontWeight', '900').css('color', 'red'); // 메소드 체이닝
+      $('.ott a').css('fontWeight', '900').css('color', 'red'); // 메소드 체이닝 가능
 
-      $('#coupangplay > span').css( {
+      $('#coupangplay > span').css({
         backgroundColor: 'pink',
         color: 'green',
         fontSize: '32px'
-      });    
+      });
     }
   </script>
 
@@ -105,13 +122,14 @@
       // 1) JavaScript 방식
       console.log(document.getElementById('userId').value);
       // 2) jQuery 방식
-      console.log($('#userId').val());
+      console.log( $('#userId').val() );
 
-      // * value 값 변경하기
-      // 1) JavaScript 방식
-      document.getElementById('userId').value = 'test1234';
-      // 2) jQuery 방식
-      $('#userId').val('test1234'); // jQuery 방식으로 value 속성값 변경하기
+      // * value 값 변경
+      // 1) JavaScript
+      document.getElementById('userId').value = 'javascript';
+      // 2) jQuery
+      $('#userId').val('jQuery').css('color', 'red');
+
     }
   </script>
 
@@ -174,8 +192,7 @@
       // * attribute 수정
       $('#img-forest').attr('width', '120px').css('border', '2px dashed pink');
       // * attribute 삭제
-      $('#img-forest').removeAttr('width');
-
+      $('#img-forest').removeAttr('width'); 
     }
   </script>
 
@@ -204,15 +221,16 @@
       console.log( $('#img-city').prop('src') );
       console.log( $('#yesorno :radio').eq(0).prop('checked') );
 
-      if ($('#yesorno :radio').eq(0).prop('checked')) {
+      if($('#yesorno :radio').eq(0).prop('checked')){
         console.log('그림에 만족한다.');
-      } else {
+      }else{
         console.log('그림에 만족하지 않는다.');
       }
 
       // * property 값 수정
       $('#img-city').prop('width', 250);
-      $('#tesorno : radio').eq(1).prop('checked', true);
+      $('#yesorno :radio').eq(1).prop('checked', true);
+
     }
   </script>
 
@@ -231,12 +249,15 @@
   <script>
     // * data 속성 가져오기
     console.log($('#user').data('name')); // document.getElementById('user').dataset.name
-    console.log($('#user').data('homeAddress')); // home-address -> homeAddress(o)
-    console.log($('#user').data('zipcode')); // zipCode(x), zipcode(o)
+    console.log($('#user').data('homeAddress')); // home-address(o), homeAddress(o)
+    console.log($('#user').data('zipcode')); // zipCode(x), zipconde(o)
 
     // * data 속성 변경
     $('#user').data('name', 'GilDong');
 
+    console.log($('#user').data('name'));
+
+    
   </script>
 
   
