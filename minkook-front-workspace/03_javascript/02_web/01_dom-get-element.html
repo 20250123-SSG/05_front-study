@@ -128,18 +128,23 @@
     ----------------------------------------------------------------------------------
   -->
 
+<h2>id를 이용한 요소 노트 취득</h2>
 
+<div id = "area1" class = "area">
+  div 영역
+  <p id = "area2">p 영역</p>
+</div> 
 
+<div id = "area1" class = "area">
+  div 영역
+</div> 
 
-
-
-
-
-
-
-
-
-
+<script>
+  const el = document.getElementById("area1");
+  console.log(el); //중복된 id의 요소가 여러개일 경우 첫번째 요소만 선택됨
+  console.dir(el); 
+  //document.getElementById("area2").innerHTML = "p 영역 변경";
+</script>
 
 
   <!-- 
@@ -151,10 +156,54 @@
        2) NodeList       : 노드 객체의 상태 변화를 실시간으로 반영하지 않는(non-live) DOM 컬렉션 객체체
   -->
 
+<!-- 태그를 이용한 요소 노드 취득 -->
+<h2>태그를 이용한 요소 노드 취득</h2>
+<ul id="food">
+  <li>김치찌개</li>
+  <li>된장찌개</li>
+  <li>고등어구이</li>
+</ul>
+<ul id="drink">
+  <li>커피</li>
+  <li>우유</li>
+  <li>콜라</li>
+</ul>
 
-  
+<script>
+  // getElementsByTagName 사용 예제
+  const lists = document.getElementsByTagName("li");
+  console.log(lists); 
+  console.log(lists.length); 
 
+  // 반복문을 사용하여 스타일 적용
+  for (let i = 0; i < lists.length; i++) {
+    lists[i].style.color = "red"; 
+    console.log(lists[i].innerHTML);
+  }
+</script>
 
-  
+<hr>
+
+<!-- HTMLCollection과 NodeList -->
+<h2>HTMLCollection과 NodeList</h2>
+<ul id="list">
+  <li class="white">첫번째 글</li>
+  <li class="white">두번째 글</li>
+  <li class="white">세번째 글</li>
+</ul>
+
+<script>
+  // getElementsByClassName 사용 예제
+  const whiteList = document.getElementsByClassName("white");
+  console.log(whiteList); // HTMLCollection 객체로 반환됨
+
+  // 반복문을 사용하여 클래스 변경
+  for (let i = 0; i < whiteList.length; i++) {
+    whiteList[i].className = "black"; // 클래스 변경
+    console.log(whiteList[i].innerHTML); // 각 요소의 내용을 출력
+  }
+</script>
 </body>
 </html>
+
+
