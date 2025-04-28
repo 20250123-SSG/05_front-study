@@ -72,7 +72,9 @@
     // DOM Property
     console.dir(imgEl);
     console.log(imgEl.src);
-
+    // imgEl.width = '500px'; // width,height property 속성값은 number
+    imgEl.width = 500;
+    imgEl.height = 100;
   </script>
 
 
@@ -97,28 +99,30 @@
     <b>안녕하세요</b>
     반갑습니다
   </div>
+
   <div id="div3">
     <b>안녕하세요</b>
     반갑습니다
   </div>
 
-  <button>클릭</button>
+  <button onclick="changeElement();">클릭</button>
+
 
   <script>
     function changeElement() {
-    const divEl2 = document.getElementById('div2');
+      const divEl2 = document.getElementById('div2');
 
-    // textContent property : 선택된 요소의 내부 텍스트
-    console.log(divEl2.textContent);
-    divEl2.textContent = '수정되나?';
-    divEl2.textContent += '<h3>태그반영되나?</h3>'; // 태그 반영 안됨
+      // textContent property : 선택된 요소의 내부 텍스트
+      console.log(divEl2.textContent);
+      divEl2.textContent = '수정되나?';
+      divEl2.textContent += '<h3>태그반영되나?</h3>'; // 태그 반영 안됨 
 
-    // innerHTML property : 선택된 요소의 내부 요소
-    const divEl3 = document.getElementById('div3');
+      // innerHTML property : 선택된 요소의 내부 요소
+      const divEl3 = document.getElementById('div3');
 
-    console.log(divEl3.innerHTML);
-    divEl2.innerHTML = '수정되나?';
-    divEl2.innerHTML += '<h3>태그반영되나?</h3>'; // 태그 반영 됨
+      console.log(divEl3.innerHTML);
+      divEl3.innerHTML += '수정되나?';
+      divEl3.innerHTML += '<h3>태그반영되나?</h3>'; // 태그 반영 됨 
     }
   </script>
 
@@ -140,6 +144,7 @@
   </script>
 
   <hr>
+
 
   <h2>체크박스, 라디오 - checked property</h2>
   <div>
@@ -169,7 +174,7 @@
 
   <!--
       ## CSS 조작 ## 
-      1. 요소의 style 속성 활용용
+      1. 요소의 style 속성 활용
       2. inline 방식으로 CSS 가 처리됨 (style 속성을 주면 기존 CSS는 덮어쓰기됨)
       3. CSS 속성 적용 방식
          1) 마침표 : CSS 속성 이름을 Dash Case 에서 Camel Case 로 바꿔서 사용
@@ -185,11 +190,11 @@
 
   <script>
 
-    const btnEl1 = docment.getElementById('btn1');
+    const btnEl1 = document.getElementById('btn1');
 
     // style 정보 확인
-    console.log(btnEl1.getAttribute('style')); // style attribute => inline 방식으로 적용
-    console.log(btnEl1.style);
+    console.log(btnEl1.getAttribute('style')); // style attribute => inline 방식으로 작성되어있는 문자열
+    console.log(btnEl1.style);      // style property => CSSStyleDeclaration 객체
 
     // style 정보 수정
     btnEl1.style.width = '150px';
@@ -219,9 +224,11 @@
     // 배경색을 'red'로 변경
     function changeLi(){
       const list = document.querySelectorAll('#ul1 > li'); // NodeList[li, li, li, .., li]
+      
+      let blueColor = 50;
       list.forEach( (li, idx) => {
         li.textContent = '안녕하세요' + idx;
-        li.style.backgroundColor = 'rgb(130, 220, ' + blueColor + ')';
+        li.style.backgroundColor = 'rgb(130, 220, ' + blueColor +')';
         blueColor += 30;
       } );
     }
@@ -254,15 +261,17 @@
     const area = document.querySelector('.area');
     console.log(area.className);
 
-    // circle 클래스 추가
-    // area.className = 'circle'; // 덮어씌워지기 때문에 .area가 제거됨
+    // circle 클래스 추가 
+    // area.className = 'circle';  // 덮어씌워지기 때문에 .area가 제거됨
 
     console.log(area.classList); // DOMTokenList 객체
 
     // DOMTokenList 객체에서 제공하는 메소드
-    // 1) add(...className) : class 속성값을 추가
-    area.classList.add('circle');
-    area.classList.add('lightgray');
+
+    // 1) add(...className) : class 속성값을 추가 
+    // area.classList.add('circle');
+    // area.classList.add('lightgray');
+    area.classList.add('circle', 'lightgray');
 
     // 2) item(index) : class 속성값 접근
     console.log(area.classList.item(1));
@@ -271,10 +280,10 @@
     console.log(area.classList.contains('lightgray'));
     console.log(area.classList.contains('yellow'));
 
-    // 4) remove(className) : lcass 속성값을 제거
+    // 4) remove(className) : class 속성값을 제거
     area.classList.remove('circle');
 
-    // 5) replace(oldClassName, new ClassName) : class 속성값을 대체
+    // 5) replace(oldClassName, newClassName) : class 속성값을 대체
     area.classList.replace('lightgray', 'yellow');
 
     // 6) toggle(className) : class 속성값 추가 및 제거 (없으면 추가, 있으면 제거)
@@ -320,7 +329,7 @@
 
   <script>
 
-    function valueTest() {
+    function valueTest(){
       // 사용자가 입력한 이름, 선택한 거주지, 체크한 관심분야의 value 값 가져오기
       const nameInput = document.getElementById('username'); // input요소객체
       const addrSelect = document.getElementById('addr');    // select요소객체
@@ -339,7 +348,6 @@
 
       //console.log(result);
       document.getElementById('result').innerHTML = result;
-
     }
 
   </script>
@@ -349,7 +357,7 @@
   <!-- 
     ## data 속성 ##
     1. 이미 정의되어있는 속성이 아닌 사용자 정의 속성을 지정할 때 사용
-    2. 주로 자바스크립트 간의 데이터 교환을 위해 특정 데이터를 저장하기 위해 사용용
+    2. 주로 자바스크립트 간의 데이터 교환을 위해 특정 데이터를 저장하기 위해 사용
     3. data- 접두사 다음에 임의의 이름을 붙여 사용함 (data-*)
     
       HTML Attribute       DOM Property
@@ -364,15 +372,15 @@
   <div id="person2">JESSICA</div>
 
   <script>
-    const pereson1 = document.getElementById('person1');
+    const person1 = document.getElementById('person1');
     console.log(`data-name: ${person1.dataset.name}`);
     console.log(`data-aGe: ${person1.dataset.age}`);
     console.log(`data-home-address: ${person1.dataset.homeAddress}`);
 
     const person2 = document.getElementById('person2');
     person2.dataset.mobile = '010-1111-2222';
-    person2.dataset.dayOfBirth = '2015-08-26';
-
+    person2.dataset.dayOfBirth = '1987-09-18';
+    
   </script>
 
 

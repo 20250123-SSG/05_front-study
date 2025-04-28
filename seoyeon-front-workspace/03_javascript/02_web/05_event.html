@@ -62,7 +62,7 @@
 
   <script>
 
-    // 익명 함수
+    // 익명 함수 
     const btn1 = document.getElementById('btn1');
     btn1.onclick = function() {
       console.log('btn1 클릭');
@@ -77,13 +77,14 @@
       btn1.onclick = null; // 이벤트 핸들러 제거
     };
 
-    // 기명 함수
-    function action() {
+    // 기명 함수 
+    function action(){
       console.log('action 함수 실행');
     }
 
     document.getElementById('btn3').onclick = action;
   </script>
+
 
   <!-- 
     ## 인라인 이벤트 모델 ## 
@@ -112,7 +113,7 @@
 
   <!-- 
     ## 표준 이벤트 모델 ##
-    0. W3C에서 공식적으로 지정한 웹 표준 이벤트 모델 방식
+    0. W3C에서 공식적으로 지정한 웹 표준의 이벤트 모델 방식 
     1. EventTarget 인터페이스의 addEventListener() 메소드를 호출하는 방식
     2. addEventListener 구문
        1) addEventListener('eventType', eventHandler)
@@ -145,14 +146,14 @@
 
   <script>
 
-    // 익명 함수
+    // 익명함수
     const btn4 = document.getElementById('btn4');
-    btn4.addEventListener('click', function() {
+    btn4.addEventListener('click', function(){
       console.log('btn4 클릭');
     });
-    btn4.addEventListener('click', function() { // 동일한 이벤트에 여러개의 이벤트 핸들러 할당 가능
+    btn4.addEventListener('click', function(){ // 동일한 이벤트에 여러개의 이벤트 핸들러 할당 가능
       alert('btn4 클릭');
-    }); 
+    });
 
     // 화살표함수
     const btn5 = document.getElementById('btn5');
@@ -163,11 +164,8 @@
       console.log('btn5에 마우스 빠져나감');
     });
 
-    // 기명 함수
-    const btn6 = document.getElementById('btn6').addEventListener('dblclick', action); // 더블클릭
-    function action() {
-      console.log('action 함수 실행');
-    }
+    // 기명함수
+    document.getElementById('btn6').addEventListener('dblclick', action);
   </script>
 
 
@@ -205,27 +203,27 @@
   <script>
 
     // 고전 이벤트 방식(익명함수)
-    document.getElementById('origin').onmouseenter = function() {
-        
+    document.getElementById('origin').onmouseenter = function(evt) {
+      
       // 이벤트가 발생되면 브라우저에서 Event 객체를 생성해서 window.event 프로퍼티에 저장시킴
-      console.log('window.event', window.event);
-      console.log('이벤트 종류:', window.event.type);
+      console.log('window.event: ', window.event);
+      console.log('이벤트 종류: ', window.event.type);
 
-      // 이벤트 핸들러가 동작될 때 Event 객체가 전달됨 => 매개변수 설정시 받을 수 있음
+      // 이벤트 핸들러가 동작될때 Event 객체가 전달됨 => 매개변수 설정시 받을 수 있음
       console.log('매개변수 evt: ', evt);
-      console.log('이벤트 종류:', evt.type);
+      console.log('이벤트 종류: ', evt.type);
 
       // 현재 이벤트가 발생된 요소 (이벤트 대상)
       console.log('이벤트 대상: ', window.event.target); // window.event.target : o
       console.log('이벤트 대상: ', evt.target);          // evt.target          : o
       console.log('이벤트 대상: ', this);                // this                : o
-    
+
       // 이벤트 대상 조작
       window.event.target.textContent = '마우스 올라감';
-      evt.target.style.fontSize = '32px';   
-      this.style.backgroundColor = 'red'; 
+      evt.target.style.fontSize = '32px';
+      this.style.backgroundColor = 'red';
 
-      console.log('-----------------------------------------');
+      console.log('----------------------------------------------------');
     };
 
     // 고전 이벤트 방식 (화살표함수)
@@ -233,7 +231,7 @@
 
       console.log('이벤트 대상: ', window.event.target); // window.event.target : o
       console.log('이벤트 대상: ', evt.target);          // evt.target          : o
-      // console.log('이벤트 대상: ', this);             // this                : x (window 객체를 참조함)
+      // console.log('이벤트 대상: ', this);             // this                : x (window 객체)
 
       window.event.target.textContent = '클릭됨';
       evt.target.style.border = '2px dashed blue';
@@ -242,17 +240,17 @@
 
     // 인라인 이벤트 방식 (기명 함수)
     function inline(evt){
-      
+
       console.log(window.event.target); // window.event.target : o
-      // console.log(evt.tarrget);      // evt.target          : x (undefined)
-      console.log(this);                // this                : x (window 객체를 참조함)
+      // console.log(evt.target);       // evt.target          : x (evt는 undefined) 
+      // console.log(this);             // this                : x (window 객체)
 
       window.event.target.textContent = '클릭됨';
       window.event.target.style.color = 'green';
     }
 
     // 표준 이벤트 방식 (익명 함수)
-    document.getElementById('listener').addEventListener('mouseenter', function(){
+    document.getElementById('listener').addEventListener('mouseenter', function(evt){
       console.log(window.event.target); // window.event.target : o
       console.log(evt.target);          // evt.target          : o
       console.log(this);                // this                : o
@@ -262,7 +260,7 @@
     document.getElementById('listener').addEventListener('click', (evt) => {
       console.log(window.event.target); // window.event.target : o
       console.log(evt.target);          // evt.target          : o
-      console.log(this);                // this                : x (window 객체를 참조함)
+      console.log(this);                // this                : x (window 객체)
     });
 
     /*
@@ -288,28 +286,29 @@
 
   <h3>적용 예시</h3>
 
-  <button id="red" onclick="changeBackground">red</button>
-  <button id="green" onclick="changeBackground">green</button>
-  <button id="blue" onclick="changeBackground">blue</button>
+  <button id="red" onclick="changeBackground();">red</button>
+  <button id="green" onclick="changeBackground();">green</button>
+  <button id="blue" onclick="changeBackground();">blue</button>
 
   <script>
-   /*
+    
+    /*
     function changeRed(){
-      document.getElementById('red').style.backgroundColor = 'red';
-    }
-
-    function changeGreen(){
-      document.getElementById('green').style.backgroundColor = 'green';
+      document.getElementById("red").style.backgroundColor = "red";
     }
 
     function changeBlue(){
-      document.getElementById('blue').style.backgroundColor = 'blue';
+      document.getElementById("blue").style.backgroundColor = "blue";
     }
-   */
 
-    // 각 버튼시 실행되는 함수
-    // 현재 이벤트가 발생된 요소의 배경색을 해당 요소의 textcontent값으로 변경
-    function changeBackground() {
+    function changeGreen(){
+      document.getElementById("green").style.backgroundColor = "green";
+    }
+    */
+
+    // 각 버튼시 실행되는 함수 
+    // 현재 이벤트가 발생된 요소의 배경색을 해당 요소의 textContent값으로 변경
+    function changeBackground(){
       const target = window.event.target;
       console.log(target);
       target.style.backgroundColor = target.textContent;
@@ -356,11 +355,11 @@
     });
     parent.addEventListener('click', (evt) => {
       console.log('부모 div 이벤트 핸들러 동작');
-      //evt.stopPropagation(); // 이벤트 전파 중지
+      evt.stopPropagation();
     });
     child.addEventListener('click', (evt) => {
       console.log('자식 div 이벤트 핸들러 동작');
-      //evt,stopPropagation();
+      evt.stopPropagation();
     });
 
   </script>
@@ -414,11 +413,11 @@
 
   <script>
 
-    // tbody 내의 tr 요소 클릭시 알람창 발생되도록
-    const trList = document.querySelectorAll('#notice > tbody > tr'); // tr 요소 모두 선택
+    // tbody 내의 tr 요소 클릭시 알람창 발생되도록 
+    const trList = document.querySelectorAll('#notice > tbody > tr');  // NodeList [tr, tr, tr]
     trList.forEach(tr => {
-      tr.addEventListener('click', function() {
-        //console.log(this.children[1].textContent); 
+      tr.addEventListener('click', function(){
+        //console.log(this.children[1].textContent);
         alert(`${this.children[1].textContent}번 글 상세페이지로 이동합니다.`);
       });
     });
@@ -427,7 +426,7 @@
 
     const checkboxList = document.querySelectorAll('#notice input[type=checkbox]');
     checkboxList.forEach(checkbox => {
-      checkbox.addEventListener('click', (evt) => evt.stopPropagation()); // 이벤트 전파 중지
+      checkbox.addEventListener('click', (evt) => evt.stopPropagation()); // 상위요소인 tr요소의 이벤트 핸들러가 동작되지 않도록
     });
   </script>
 
@@ -457,10 +456,10 @@
 
   <script>
     // 동일한 이벤트의 이벤트 핸들러 직접 부여시 => 내가 작성한 이벤트 핸들러가 우선순위가 높음
-    //                                           => 즉, 기본 이벤트보다 먼저 작동 됨
+    //                                           => 즉, 기본 이벤트 보다 먼저 작동 됨 
     document.getElementById('naver-link').addEventListener('click', (evt) => {
-      if(!confirm('페이지 이동하시겠습니까?')){ // 사용자가 이동을 안하겠다는 의사를 밝혔을 때
-        // 기본 이벤트가 동작되지 않도록
+      if(!confirm('페이지 이동하시겠습니까?')){ // 사용자가 이동안하겠다는 의사를 밝혔을 경우
+        // 기본이벤트가 동작되지 않도록
         evt.preventDefault();
       }
     });
@@ -471,13 +470,12 @@
       const checkPwdInput = document.getElementById('checkPwd');
 
       if(userPwdInput.value != checkPwdInput.value){
-        alert('비밀번호가 일치하지 않습니다.');
+        alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
         checkPwdInput.focus();
         evt.preventDefault();
       }
+
     });
-
-
 
   </script>
 
@@ -497,28 +495,31 @@
        2) keyCode : 물리적인 키 코드 
   -->
 
-  <input id="content" type="text" placeholder="아무 키나 입력하세요">
+  <input id="content" type="text" placeholder="아무 키나 입력하세요" >
 
   <div id="result" style="background:lightgray; width: 300px;">&nbsp;</div>
 
   <script>
     /*
     document.getElementById('content').onkeypress = function(evt) {
+
     };
     */
 
     document.getElementById('content').addEventListener('keyup', (evt) => {
       // console.log('keyup 이벤트 발생');
 
-      // console.log('evt');
+      // console.log(evt);
       // console.log(`key: ${evt.key}`);
       // console.log(`keyCode: ${evt.keyCode}`);
       // console.log(`code: ${evt.code}`);
 
-      console.log(`작성된값: ${evt.target.value}`);
+      // console.log(`작성된값: ${evt.target.value}`);
+
+      document.getElementById('result').textContent = evt.target.value;
 
     });
-    
+
   </script>
 
 

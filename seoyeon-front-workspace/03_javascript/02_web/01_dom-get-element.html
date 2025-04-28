@@ -255,6 +255,13 @@
         // for문 사용가능, for-of문 사용가능
 
 
+        // NodeList에 기본적으로 forEach 메소드 제공 
+        list.forEach( li => {
+          li.style.backgroundColor = 'lightgray';
+          li.style.color = 'white';
+        });
+
+        console.log('--------------------------------');
       </script>
 
       <hr>
@@ -270,6 +277,13 @@
 
   <h2>HTMLCollection과 NodeList</h2>
 
+  <style>
+    .white{color: white;}
+    .black{color: black;}
+    .blue{color: blue;}
+    .red{color: red;}
+  </style>
+  
   <ul>
     <li class="white">첫 번째 글</li>
     <li class="white">두 번째 글</li>
