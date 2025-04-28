@@ -13,7 +13,13 @@
   <div id="box" class="wrap">box</div>
 
   <script>
-
+    // 태그이용해서 선택
+    console.log( $('div') );       // document.getElementsByTagName('div')
+    // 아이디 이용해서 선택
+    console.log( $('#box') );      // document.getElementById('box')
+    // 클래스 이용해서 선택
+    console.log( $('.wrap') );      // document.getElementsByClassName('wrap')
+    console.log('----------------------------------');
   </script>
 
   <hr>
@@ -33,6 +39,18 @@
   </select>
 
   <script>
+    console.log('-- type 선택장 이용 --');
+    console.log( $(':text') );
+    console.log( $(':password') );
+    console.log( $(':radio') );
+    console.log( $(':checkbox') );
+    console.log( $(':submit') );
+
+    console.log('-- 상태 선택자 이용 --');
+    console.log( $(':radio:checked') );
+    console.log( $(':checkbox:checked') );
+    console.log( $(':submit:disabled') );
+    console.log( $('selected') );
 
   </script>
 
@@ -40,7 +58,7 @@
   
   <h2>탐색메소드(Traversing) 이용해서 요소 선택</h2>
   <ul class="ott">
-    <li id="netflex"><a href="#">넷플릭스</a></li>
+    <li id="netflix"><a href="#">넷플릭스</a></li>
     <li id="disneyplus"><a href="#">디즈니플러스</a></li>
     <li id="tving"><a id="tving-link" href="#">티빙</a></li>
     <li id="wave"><a href="#">웨이브</a></li>
@@ -49,8 +67,36 @@
 
   <script>
       
-
+    // * 자손 및 후손 : Descendants Traversing
+    // 1) 자손
+    console.log('-- 자손 요소 선택 --');
+    console.log( $('.ott > li') ); 
+    console.log( $('.ott').children() ); // 자식요소 선택
+    console.log( $('.ott').children().children() );  // 자식요소의 자식요소 선택
+    console.log( $('.ott').children().children('a') ); // 자식요소의 자식요소 중 a요소 선택
     
+    // 2) 후손
+    console.log('-- 후손 요소 선택 --');
+    console.log( $('.ott a') );
+    console.log( $('.ott').find('a') );
+
+    // * 동위 관계 : Sideways Traversing
+    // 1) 일반형제 (~)
+    console.log( $('#tving').nextAll() );
+    console.log( $('#tving').prevAll() );
+    console.log( $('#tving').siblings() );
+    console.log( $('#tving').siblings('li') );
+
+    // 2) 인접형제 (+)
+    console.log( $('#tving').next() );
+    console.log( $('#tving').prev() );
+
+    // * 부모 및 조상 : Ancestors Traversing
+    console.log( $('#tving-link').parent() );
+    console.log( $('#tving-link').parents() );
+    console.log( $('#tving-link').closest('ul') );
+
+    console.log('-------------------------------');
   </script>
 
   <hr>
@@ -85,7 +131,13 @@
   </table>
 
   <script>
-
+    console.log( $('#user-info tr').first() ); // 첫번째 tr 선택
+    console.log( $('#user-info tr').last() ); // 마지막 tr 선택
+    console.log( $('#user-info tr').even() ); // 짝수 tr 선택
+    console.log( $('#user-info tr').odd() ); // 홀수 tr 선택
+    console.log( $('#user-info tr').eq(3) ); // 3번째 tr 선택
+    console.log( $('#user-info tr').filter('.main') ); // class가 main인 tr 선택
+    console.log( $('#user-info tr').not('.main') ); // class가 main이 아닌 tr 선택
   </script>
   
 </body>
