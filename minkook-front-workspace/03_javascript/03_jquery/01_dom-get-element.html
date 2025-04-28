@@ -13,7 +13,15 @@
   <div id="box" class="wrap">box</div>
 
   <script>
+    console.log($('div')); // document.getElementById; // div요소 선택하기
 
+    //아이디이용해서 선택
+    console.log($('#box')); // document.getElementById('box'); // id가 box인 요소 선택하기
+
+    //클래스이용해서 선택
+    console.log($('.wrap')); // document.getElementsByClassName('wrap'); // class가 wrap인 요소 선택하기
+
+    console.log('----------------------------');
   </script>
 
   <hr>

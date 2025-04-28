@@ -1,4 +1,6 @@
+var integer = 10;
 
+console.log(integer); // 10
 /*
   ## JavaScript 타입(자료형) ##
   1. string

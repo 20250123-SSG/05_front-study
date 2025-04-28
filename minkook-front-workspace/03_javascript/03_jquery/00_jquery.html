@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
@@ -29,6 +30,19 @@
   <div id="jQuery-test">jQuery방식으로 선택</div>
 
   <script>
+    const jsEl = document.getElementById('javascript-test'); 
+    //순수 javascript방식으로 선택하기
+    // DOM 조작  - property를 접근해서 대입하는 방식
+    jsEl.textContent = '순수 javascript방식으로 선택하기';
+    jsEl.style.backgroundColor = 'red'; // 배경색상 변경하기
+
+    // jQuery 라이브러리방식
+    const jqEl = $('#jQuery-test'); // jQuery방식으로 선택하기}
+    jqEl.text('jqEl방식으로 문구변경');
+    jqEl.css('background-color', 'green'); // 배경색상 변경하기
+
+
+
 
     
   </script>
